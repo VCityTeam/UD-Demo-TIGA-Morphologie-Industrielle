@@ -32,21 +32,36 @@
             parseInt(configs['extent'][0].north)
           );
 
-          const viewDomElement = document.createElement('div');
-          viewDomElement.classList.add('full_screen');
-          document.body.appendChild(viewDomElement);
-          const view = new app.itowns.PlanarView(viewDomElement, extent);
-
-          // init scene 3D
+          const leftViewDomElement = document.createElement('div');
+          leftViewDomElement.classList.add('left_view');
+          document.body.appendChild(leftViewDomElement);
+          const leftView = new app.itowns.PlanarView(
+            leftViewDomElement,
+            extent
+          );
           app.initScene(
-            view.camera.camera3D,
-            view.mainLoop.gfxEngine.renderer,
-            view.scene
+            leftView.camera.camera3D,
+            leftView.mainLoop.gfxEngine.renderer,
+            leftView.scene
+          );
+
+          const rightViewDomElement = document.createElement('div');
+          rightViewDomElement.classList.add('right_view');
+          document.body.appendChild(rightViewDomElement);
+          const rightView = new app.itowns.PlanarView(
+            rightViewDomElement,
+            extent
+          );
+          app.initScene(
+            rightView.camera.camera3D,
+            rightView.mainLoop.gfxEngine.renderer,
+            rightView.scene
           );
 
           // add layers
-          view.addLayer(
-            new app.itowns.ColorLayer(configs['base_maps'][0]['name'], {
+
+          const baseMapLayer = function () {
+            return new app.itowns.ColorLayer(configs['base_maps'][0]['name'], {
               updateStrategy: {
                 type: app.itowns.STRATEGY_DICHOTOMY,
                 options: {},
@@ -60,21 +75,20 @@
                 format: configs['base_maps'][0].source['format'],
               }),
               transparent: true,
-            })
-          );
+            });
+          };
 
-          const isTextureFormat =
-            configs['elevation']['format'] == 'image/jpeg' ||
-            configs['elevation']['format'] == 'image/png';
-          view.addLayer(
-            new app.itowns.ElevationLayer(configs['elevation']['layer_name'], {
-              useColorTextureElevation: isTextureFormat,
-              colorTextureElevationMinZ: isTextureFormat
-                ? configs['elevation']['colorTextureElevationMinZ']
-                : null,
-              colorTextureElevationMaxZ: isTextureFormat
-                ? configs['elevation']['colorTextureElevationMaxZ']
-                : null,
+          leftView.addLayer(baseMapLayer());
+          rightView.addLayer(baseMapLayer());
+
+          const elevationLayer = new app.itowns.ElevationLayer(
+            configs['elevation']['layer_name'],
+            {
+              useColorTextureElevation: true,
+              colorTextureElevationMinZ:
+                configs['elevation']['colorTextureElevationMinZ'],
+              colorTextureElevationMaxZ:
+                configs['elevation']['colorTextureElevationMaxZ'],
               source: new app.itowns.WMSSource({
                 extent: extent,
                 url: configs['elevation']['url'],
@@ -83,22 +97,31 @@
                 heightMapWidth: 256,
                 format: configs['elevation']['format'],
               }),
-            })
+            }
           );
+          leftView.addLayer(elevationLayer);
+          rightView.addLayer(elevationLayer);
 
-          configs['3DTiles'].forEach((layerConfig) => {
+          const c3dtilesLayer = function (config, view) {
+            return new app.itowns.C3DTilesLayer(
+              config['id'],
+              {
+                name: config['id'],
+                source: new app.itowns.C3DTilesSource({
+                  url: config['url'],
+                }),
+              },
+              view
+            );
+          };
+          configs['3DTiles'].forEach((config) => {
             app.itowns.View.prototype.addLayer.call(
-              view,
-              new app.itowns.C3DTilesLayer(
-                layerConfig['id'],
-                {
-                  name: layerConfig['id'],
-                  source: new app.itowns.C3DTilesSource({
-                    url: layerConfig['url'],
-                  }),
-                },
-                view
-              )
+              leftView,
+              c3dtilesLayer(config, leftView)
+            );
+            app.itowns.View.prototype.addLayer.call(
+              rightView,
+              c3dtilesLayer(config, rightView)
             );
           });
         });
