@@ -1,0 +1,37 @@
+{
+  "name": "morphologie-urbaine",
+  "private": true,
+  "version": "1.0.0",
+  "description": "TIGA Morphologie Urbaine",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "debug": "cross-env NODE_ENV=development webpack && python3 -m http.server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/VCityTeam/UD-Demo-TIGA-Morphologie-Urbaine.git"
+  },
+  "keywords": [
+    "webGL",
+    "3DTiles"
+  ],
+  "author": "VCity/LIRIS",
+  "license": "LGPL-2.1-only",
+  "bugs": {
+    "url": "https://github.com/VCityTeam/UD-Demo-TIGA-Morphologie-Urbaine/issues"
+  },
+  "homepage": "https://github.com/VCityTeam/UD-Demo-TIGA-Morphologie-Urbaine#readme",
+  "dependencies": {
+    "@ud-viz/utils_browser": "4.0.3",
+    "buffer": "^6.0.3",
+    "cross-env": "7.0.3"
+  },
+  "devDependencies": {
+    "css-loader": "^6.8.1",
+    "style-loader": "^3.3.3",
+    "webpack-bundle-analyzer": "^4.10.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
