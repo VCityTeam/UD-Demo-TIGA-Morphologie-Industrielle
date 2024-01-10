@@ -7,7 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
-    <div id="main_div"></div>
+    <div id="main_div">
+      <button id="left_to_right">Left</button>
+      <button id="lock">Lock</button>
+      <button id="right_to_left">Right</button>
+    </div>
     <script src="../dist/development/bundle.js"></script>
     <script type="text/javascript">
       app
@@ -20,10 +24,8 @@
           '../assets/config/layer/elevation.json',
         ])
         .then((configs) => {
-          app.proj4.default.defs(
-            configs['crs'][0].name,
-            configs['crs'][0].transform
-          );
+          const crs = configs['crs'][0].name;
+          app.proj4.default.defs(crs, configs['crs'][0].transform);
 
           const extent = new app.itowns.Extent(
             configs['extent'][0].name,
@@ -35,6 +37,7 @@
 
           const mainDiv = document.getElementById('main_div');
 
+          // ADD VIEWS
           const leftViewDomElement = document.createElement('div');
           leftViewDomElement.classList.add('left_view');
           mainDiv.appendChild(leftViewDomElement);
@@ -60,6 +63,55 @@
             rightView.mainLoop.gfxEngine.renderer,
             rightView.scene
           );
+
+          // ADD EVENTS
+          let lockedViews = true;
+          let overLeftView = true;
+
+          leftViewDomElement.addEventListener('mousemove', () => {
+            overLeftView = true;
+          });
+          rightViewDomElement.addEventListener('mousemove', () => {
+            overLeftView = false;
+          });
+          const sync = function () {
+            if (lockedViews) {
+              if (overLeftView) {
+                rightView.camera.setPosition(leftView.camera.position(crs));
+                rightView.notifyChange(rightView.camera3D);
+              } else {
+                leftView.camera.setPosition(rightView.camera.position(crs));
+                leftView.notifyChange(leftView.camera3D);
+              }
+            }
+          };
+          sync();
+          leftView.addFrameRequester(
+            app.itowns.MAIN_LOOP_EVENTS.AFTER_CAMERA_UPDATE,
+            sync
+          );
+          rightView.addFrameRequester(
+            app.itowns.MAIN_LOOP_EVENTS.AFTER_CAMERA_UPDATE,
+            sync
+          );
+
+          document
+            .getElementById('left_to_right')
+            .addEventListener('click', () => {
+              rightView.camera.setPosition(leftView.camera.position(crs));
+              rightView.notifyChange(rightView.camera3D);
+            });
+
+          document
+            .getElementById('right_to_left')
+            .addEventListener('click', () => {
+              leftView.camera.setPosition(rightView.camera.position(crs));
+              leftView.notifyChange(leftView.camera3D);
+            });
+
+          document.getElementById('lock').addEventListener('click', () => {
+            lockedViews = !lockedViews;
+          });
 
           // ADD LAYERS
           leftView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
