@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>frame3d</title>
+    <title>View</title>
     <link rel="stylesheet" href="../css/view.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
   <body>
+    <div id="main_div"></div>
     <script src="../dist/development/bundle.js"></script>
     <script type="text/javascript">
       app
@@ -32,9 +33,11 @@
             parseInt(configs['extent'][0].north)
           );
 
+          const mainDiv = document.getElementById('main_div');
+
           const leftViewDomElement = document.createElement('div');
           leftViewDomElement.classList.add('left_view');
-          document.body.appendChild(leftViewDomElement);
+          mainDiv.appendChild(leftViewDomElement);
           const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
             extent
@@ -47,7 +50,7 @@
 
           const rightViewDomElement = document.createElement('div');
           rightViewDomElement.classList.add('right_view');
-          document.body.appendChild(rightViewDomElement);
+          mainDiv.appendChild(rightViewDomElement);
           const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
             extent
@@ -58,70 +61,25 @@
             rightView.scene
           );
 
-          // add layers
+          // ADD LAYERS
+          leftView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
+          rightView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
 
-          const baseMapLayer = function () {
-            return new app.itowns.ColorLayer(configs['base_maps'][0]['name'], {
-              updateStrategy: {
-                type: app.itowns.STRATEGY_DICHOTOMY,
-                options: {},
-              },
-              source: new app.itowns.WMSSource({
-                extent: extent,
-                name: configs['base_maps'][0].source['name'],
-                url: configs['base_maps'][0].source['url'],
-                version: configs['base_maps'][0].source['version'],
-                crs: extent.crs,
-                format: configs['base_maps'][0].source['format'],
-              }),
-              transparent: true,
-            });
-          };
-
-          leftView.addLayer(baseMapLayer());
-          rightView.addLayer(baseMapLayer());
-
-          const elevationLayer = new app.itowns.ElevationLayer(
-            configs['elevation']['layer_name'],
-            {
-              useColorTextureElevation: true,
-              colorTextureElevationMinZ:
-                configs['elevation']['colorTextureElevationMinZ'],
-              colorTextureElevationMaxZ:
-                configs['elevation']['colorTextureElevationMaxZ'],
-              source: new app.itowns.WMSSource({
-                extent: extent,
-                url: configs['elevation']['url'],
-                name: configs['elevation']['name'],
-                crs: extent.crs,
-                heightMapWidth: 256,
-                format: configs['elevation']['format'],
-              }),
-            }
+          const elevationLayer = app.ElevationLayer(
+            configs['elevation'],
+            extent
           );
           leftView.addLayer(elevationLayer);
           rightView.addLayer(elevationLayer);
 
-          const c3dtilesLayer = function (config, view) {
-            return new app.itowns.C3DTilesLayer(
-              config['id'],
-              {
-                name: config['id'],
-                source: new app.itowns.C3DTilesSource({
-                  url: config['url'],
-                }),
-              },
-              view
-            );
-          };
           configs['3DTiles'].forEach((config) => {
             app.itowns.View.prototype.addLayer.call(
               leftView,
-              c3dtilesLayer(config, leftView)
+              app.C3DTilesLayer(config, leftView)
             );
             app.itowns.View.prototype.addLayer.call(
               rightView,
-              c3dtilesLayer(config, rightView)
+              app.C3DTilesLayer(config, rightView)
             );
           });
         });
