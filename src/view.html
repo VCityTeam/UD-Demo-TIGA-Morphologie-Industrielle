@@ -16,15 +16,18 @@
         <div class="slider_container">
           <input type="text" id="left_slider" />
         </div>
+        <div id="left_view_container" class="view_container"></div>
       </div>
       <div id="right_view">
         <div class="slider_container">
           <input type="text" id="right_slider" />
         </div>
+        <div id="right_view_container" class="view_container"></div>
       </div>
     </div>
     <script src="../dist/development/bundle.js"></script>
     <script src="./rSlider/rSlider.min.js"></script>
+    <!--https://slawomir-zaziablo.github.io/range-slider/-->
     <script type="text/javascript">
       app
         .loadMultipleJSON([
@@ -48,7 +51,7 @@
           );
 
           // ADD VIEWS
-          const leftViewDomElement = document.getElementById('left_view');
+          const leftViewDomElement = document.getElementById('left_view_container');
           const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
             extent
@@ -59,7 +62,7 @@
             leftView.scene
           );
 
-          const rightViewDomElement = document.getElementById('right_view');
+          const rightViewDomElement = document.getElementById('right_view_container');
           const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
             extent
