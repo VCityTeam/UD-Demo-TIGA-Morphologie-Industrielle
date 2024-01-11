@@ -3,6 +3,7 @@
   <head>
     <title>View</title>
     <link rel="stylesheet" href="../css/view.css" />
+    <link rel="stylesheet" href="../css/rSlider.css" />
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   </head>
@@ -11,8 +12,19 @@
       <button id="left_to_right">Left</button>
       <button id="lock">Lock</button>
       <button id="right_to_left">Right</button>
+      <div id="left_view">
+        <div class="slider_container">
+          <input type="text" id="left_slider" />
+        </div>
+      </div>
+      <div id="right_view">
+        <div class="slider_container">
+          <input type="text" id="right_slider" />
+        </div>
+      </div>
     </div>
     <script src="../dist/development/bundle.js"></script>
+    <script src="./rSlider/rSlider.min.js"></script>
     <script type="text/javascript">
       app
         .loadMultipleJSON([
@@ -35,12 +47,8 @@
             parseInt(configs['extent'][0].north)
           );
 
-          const mainDiv = document.getElementById('main_div');
-
           // ADD VIEWS
-          const leftViewDomElement = document.createElement('div');
-          leftViewDomElement.classList.add('left_view');
-          mainDiv.appendChild(leftViewDomElement);
+          const leftViewDomElement = document.getElementById('left_view');
           const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
             extent
@@ -51,9 +59,7 @@
             leftView.scene
           );
 
-          const rightViewDomElement = document.createElement('div');
-          rightViewDomElement.classList.add('right_view');
-          mainDiv.appendChild(rightViewDomElement);
+          const rightViewDomElement = document.getElementById('right_view');
           const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
             extent
@@ -115,6 +121,24 @@
 
           document.getElementById('lock').addEventListener('click', () => {
             lockedViews = !lockedViews;
+          });
+
+          const leftSlider = new rSlider({
+            target: '#left_slider',
+            values: [2008, 2009, 2010, 2011, 2012, 2013],
+            tooltip: true,
+            scale: true,
+            labels: false,
+            set: [2010],
+          });
+
+          const rightSlider = new rSlider({
+            target: '#right_slider',
+            values: [2008, 2009, 2010, 2011, 2012, 2013],
+            tooltip: true,
+            scale: true,
+            labels: false,
+            set: [2010],
           });
 
           // ADD LAYERS

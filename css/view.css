@@ -23,7 +23,7 @@ body {
   cursor: pointer;
 }
 
-.left_view {
+#left_view {
   position: absolute;
   top: 0;
   left: 0;
@@ -31,10 +31,19 @@ body {
   height: 100%;
 }
 
-.right_view {
+#right_view {
   position: absolute;
   top: 0;
   left: 50%;
   width: 50%;
   height: 100%;
+}
+
+.slider_container {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  width: 75%;
+  transform: translateX(-50%);
+  z-index: 3;
 }
