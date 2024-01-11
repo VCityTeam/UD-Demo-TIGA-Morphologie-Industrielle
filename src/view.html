@@ -9,9 +9,18 @@
   </head>
   <body>
     <div id="main_div">
-      <button id="left_to_right">Left</button>
-      <button id="lock">Lock</button>
-      <button id="right_to_left">Right</button>
+      <div id="sync_div">
+        <button id="left_to_right">
+          <img src="../assets/img/icons/arrow.png" />
+        </button>
+        <button id="lock">
+          <img id="lock_img" src="../assets/img/icons/lock.png" />
+          <img id="unlock_img" src="../assets/img/icons/unlock.png" />
+        </button>
+        <button id="right_to_left">
+          <img src="../assets/img/icons/arrow.png" />
+        </button>
+      </div>
       <div id="left_view">
         <div class="slider_container">
           <input type="text" id="left_slider" />
@@ -129,6 +138,13 @@
 
           document.getElementById('lock').addEventListener('click', () => {
             lockedViews = !lockedViews;
+            if (lockedViews) {
+              document.getElementById('unlock_img').style.display = 'none';
+              document.getElementById('lock_img').style.display = 'block';
+            } else {
+              document.getElementById('lock_img').style.display = 'none';
+              document.getElementById('unlock_img').style.display = 'block';
+            }
           });
 
           // ADD LAYERS
