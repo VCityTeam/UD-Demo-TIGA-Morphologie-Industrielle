@@ -37,6 +37,7 @@
           '../assets/config/layer/3DTiles.json',
           '../assets/config/layer/base_maps.json',
           '../assets/config/layer/elevation.json',
+          '../assets/config/layer/temporal_data.json',
         ])
         .then((configs) => {
           const crs = configs['crs'][0].name;
@@ -51,7 +52,9 @@
           );
 
           // ADD VIEWS
-          const leftViewDomElement = document.getElementById('left_view_container');
+          const leftViewDomElement = document.getElementById(
+            'left_view_container'
+          );
           const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
             extent
@@ -62,7 +65,9 @@
             leftView.scene
           );
 
-          const rightViewDomElement = document.getElementById('right_view_container');
+          const rightViewDomElement = document.getElementById(
+            'right_view_container'
+          );
           const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
             extent
@@ -126,24 +131,6 @@
             lockedViews = !lockedViews;
           });
 
-          const leftSlider = new rSlider({
-            target: '#left_slider',
-            values: [2008, 2009, 2010, 2011, 2012, 2013],
-            tooltip: true,
-            scale: true,
-            labels: false,
-            set: [2010],
-          });
-
-          const rightSlider = new rSlider({
-            target: '#right_slider',
-            values: [2008, 2009, 2010, 2011, 2012, 2013],
-            tooltip: true,
-            scale: true,
-            labels: false,
-            set: [2010],
-          });
-
           // ADD LAYERS
           leftView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
           rightView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
@@ -164,6 +151,36 @@
               rightView,
               app.C3DTilesLayer(config, rightView)
             );
+          });
+
+          let years = [];
+          configs['temporal_data'].forEach((yearConfig) => {
+            years.push(yearConfig.year);
+          });
+
+          // ADD SLIDERS
+          function LoadDataForYear(year) {
+            console.log(year);
+          }
+
+          const leftSlider = new rSlider({
+            target: '#left_slider',
+            values: years,
+            labels: false,
+            set: [years[0]],
+            onChange: function (val) {
+              LoadDataForYear(val);
+            },
+          });
+
+          const rightSlider = new rSlider({
+            target: '#right_slider',
+            values: years,
+            labels: false,
+            set: [years[0]],
+            onChange: function (val) {
+              LoadDataForYear(val);
+            },
           });
         });
     </script>
