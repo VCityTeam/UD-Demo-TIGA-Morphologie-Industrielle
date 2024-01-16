@@ -18,6 +18,19 @@ export function BaseMapLayer(config, extent) {
   });
 }
 
+export function ColorLayerFromFile(config, style) {
+  return new itowns.ColorLayer(config.id, {
+    name: config.id,
+    transparent: true,
+    source: new itowns.FileSource({
+      url: config.url,
+      crs: config.crs,
+      format: 'application/json',
+    }),
+    style: new itowns.Style(config.style),
+  });
+}
+
 export function ElevationLayer(config, extent) {
   return new itowns.ElevationLayer(config['layer_name'], {
     useColorTextureElevation: true,
