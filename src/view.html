@@ -61,12 +61,18 @@
           );
 
           // ADD VIEWS
+          const placement = {
+            coord: new app.itowns.Coordinates('EPSG:3857', 554000, 5730000),
+            range: 300000,
+          };
+
           const leftViewDomElement = document.getElementById(
             'left_view_container'
           );
           const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
-            extent
+            extent,
+            { maxSubdivisionLevel: 500, placement: placement }
           );
           app.initScene(
             leftView.camera.camera3D,
@@ -79,7 +85,8 @@
           );
           const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
-            extent
+            extent,
+            { maxSubdivisionLevel: 500, placement: placement }
           );
           app.initScene(
             rightView.camera.camera3D,
