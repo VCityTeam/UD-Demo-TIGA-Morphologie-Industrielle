@@ -78,6 +78,10 @@
             leftView.mainLoop.gfxEngine.renderer,
             leftView.scene
           );
+          const leftToolTip = new app.FeatureToolTip(
+            leftViewDomElement,
+            leftView
+          );
 
           const rightViewDomElement = document.getElementById(
             'right_view_container'
@@ -91,6 +95,10 @@
             rightView.camera.camera3D,
             rightView.mainLoop.gfxEngine.renderer,
             rightView.scene
+          );
+          const rightToolTip = new app.FeatureToolTip(
+            rightViewDomElement,
+            rightView
           );
 
           // ADD EVENTS
@@ -187,11 +195,17 @@
             leftLayer.visible = false;
             leftView.addLayer(leftLayer);
             layersByYearLeft[year].push(leftLayer);
+            leftToolTip.addLayer(leftLayer, {
+              filterProperties: ['nom_comm', 'EFF'],
+            });
 
             const rightLayer = app.ColorLayerFromFile(yearConfig.data);
             rightLayer.visible = false;
             rightView.addLayer(rightLayer);
             layersByYearRight[year].push(rightLayer);
+            rightToolTip.addLayer(rightLayer, {
+              filterProperties: ['nom_comm', 'EFF'],
+            });
           });
 
           let currYear = years[0];

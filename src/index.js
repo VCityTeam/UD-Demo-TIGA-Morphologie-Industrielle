@@ -7,3 +7,4 @@ export {
   C3DTilesLayer,
   ElevationLayer,
 } from './layerUtils';
+export { FeatureToolTip } from './featureToolTip';
