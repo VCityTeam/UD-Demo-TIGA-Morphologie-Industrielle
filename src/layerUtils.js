@@ -18,7 +18,7 @@ export function BaseMapLayer(config, extent) {
   });
 }
 
-export function ColorLayerFromFile(config, style) {
+export function ColorLayerFromFile(config) {
   return new itowns.ColorLayer(config.id, {
     name: config.id,
     transparent: true,
