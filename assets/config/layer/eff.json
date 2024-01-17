@@ -15,20 +15,6 @@
                     "width": 1.5
                 }
             }
-        },
-        "label": {
-            "id": "eff_1990_labels",
-            "url": "../assets/data/eff_3857/EFF_1990_1995_LABELS.geojson",
-            "style": {
-                "text": {
-                    "field": "{nom_comm}",
-                    "color": "#E5127B",
-                    "transform": "uppercase",
-                    "size": 15,
-                    "haloColor": "rgba(20,20,20, 0.8)",
-                    "haloWidth": 3
-                }
-            }
         }
     },
     {
@@ -45,20 +31,6 @@
                 "stroke": {
                     "color": "#666666",
                     "width": 1.5
-                }
-            }
-        },
-        "label": {
-            "id": "eff_1995_labels",
-            "url": "../assets/data/eff_3857/EFF_1995_2000_LABELS.geojson",
-            "style": {
-                "text": {
-                    "field": "{nom_comm}",
-                    "color": "#E5127B",
-                    "transform": "uppercase",
-                    "size": 15,
-                    "haloColor": "rgba(20,20,20, 0.8)",
-                    "haloWidth": 3
                 }
             }
         }
@@ -79,20 +51,6 @@
                     "width": 1.5
                 }
             }
-        },
-        "label": {
-            "id": "eff_2000_labels",
-            "url": "../assets/data/eff_3857/EFF_2000_2005_LABELS.geojson",
-            "style": {
-                "text": {
-                    "field": "{nom_comm}",
-                    "color": "#E5127B",
-                    "transform": "uppercase",
-                    "size": 15,
-                    "haloColor": "rgba(20,20,20, 0.8)",
-                    "haloWidth": 3
-                }
-            }
         }
     },
     {
@@ -109,20 +67,6 @@
                 "stroke": {
                     "color": "#666666",
                     "width": 1.5
-                }
-            }
-        },
-        "label": {
-            "id": "eff_2005_labels",
-            "url": "../assets/data/eff_3857/EFF_2005_2010_LABELS.geojson",
-            "style": {
-                "text": {
-                    "field": "{nom_comm}",
-                    "color": "#E5127B",
-                    "transform": "uppercase",
-                    "size": 15,
-                    "haloColor": "rgba(20,20,20, 0.8)",
-                    "haloWidth": 3
                 }
             }
         }
@@ -143,20 +87,6 @@
                     "width": 1.5
                 }
             }
-        },
-        "label": {
-            "id": "eff_2010_labels",
-            "url": "../assets/data/eff_3857/EFF_2010_2015_LABELS.geojson",
-            "style": {
-                "text": {
-                    "field": "{nom_comm}",
-                    "color": "#E5127B",
-                    "transform": "uppercase",
-                    "size": 15,
-                    "haloColor": "rgba(20,20,20, 0.8)",
-                    "haloWidth": 3
-                }
-            }
         }
     },
     {
@@ -173,20 +103,6 @@
                 "stroke": {
                     "color": "#666666",
                     "width": 1.5
-                }
-            }
-        },
-        "label": {
-            "id": "eff_2015_labels",
-            "url": "../assets/data/eff_3857/EFF_2015_2020_LABELS.geojson",
-            "style": {
-                "text": {
-                    "field": "{nom_comm}",
-                    "color": "#E5127B",
-                    "transform": "uppercase",
-                    "size": 15,
-                    "haloColor": "rgba(20,20,20, 0.8)",
-                    "haloWidth": 3
                 }
             }
         }
