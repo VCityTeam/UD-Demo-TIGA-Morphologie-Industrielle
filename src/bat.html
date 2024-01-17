@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>View</title>
+    <link rel="stylesheet" href="../css/view.css" />
+    <link rel="stylesheet" href="../css/rSlider.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div id="main_div">
+      <div id="sync_div">
+        <button id="left_to_right">
+          <img src="../assets/img/icons/arrow.png" />
+        </button>
+        <button id="lock">
+          <img id="lock_img" src="../assets/img/icons/lock.png" />
+          <img id="unlock_img" src="../assets/img/icons/unlock.png" />
+        </button>
+        <button id="right_to_left">
+          <img src="../assets/img/icons/arrow.png" />
+        </button>
+      </div>
+      <div id="left_view">
+        <div class="slider_container">
+          <input type="text" id="left_slider" />
+        </div>
+        <div id="left_view_container" class="view_container"></div>
+      </div>
+      <div id="right_view">
+        <div class="slider_container">
+          <input type="text" id="right_slider" />
+        </div>
+        <div id="right_view_container" class="view_container"></div>
+      </div>
+    </div>
+    <script src="../dist/development/bundle.js"></script>
+    <script src="./rSlider/rSlider.min.js"></script>
+    <!--https://slawomir-zaziablo.github.io/range-slider/-->
+    <script type="text/javascript">
+      app
+        .loadMultipleJSON([
+          '../assets/config/extent.json',
+          '../assets/config/crs.json',
+          '../assets/config/planar.json',
+          '../assets/config/layer/base_maps.json',
+          '../assets/config/layer/elevation.json',
+          '../assets/config/layer/bat.json',
+        ])
+        .then((configs) => {
+          const crs = configs['crs'][0].name;
+          app.proj4.default.defs(crs, configs['crs'][0].transform);
+
+          const extent = new app.itowns.Extent(
+            configs['extent'][0].name,
+            parseInt(configs['extent'][0].west),
+            parseInt(configs['extent'][0].east),
+            parseInt(configs['extent'][0].south),
+            parseInt(configs['extent'][0].north)
+          );
+
+          // ADD VIEWS
+          const placement = {
+            coord: new app.itowns.Coordinates('EPSG:3857', 545650, 5733000),
+            range: 7000,
+          };
+
+          const leftViewDomElement = document.getElementById(
+            'left_view_container'
+          );
+          const leftView = new app.itowns.PlanarView(
+            leftViewDomElement,
+            extent,
+            { maxSubdivisionLevel: 17, placement: placement }
+          );
+          app.initScene(
+            leftView.camera.camera3D,
+            leftView.mainLoop.gfxEngine.renderer,
+            leftView.scene
+          );
+          const leftToolTip = new app.FeatureToolTip(
+            leftViewDomElement,
+            leftView
+          );
+
+          const rightViewDomElement = document.getElementById(
+            'right_view_container'
+          );
+          const rightView = new app.itowns.PlanarView(
+            rightViewDomElement,
+            extent,
+            { maxSubdivisionLevel: 17, placement: placement }
+          );
+          app.initScene(
+            rightView.camera.camera3D,
+            rightView.mainLoop.gfxEngine.renderer,
+            rightView.scene
+          );
+          const rightToolTip = new app.FeatureToolTip(
+            rightViewDomElement,
+            rightView
+          );
+
+          // ADD EVENTS
+          let lockedViews = true;
+          let overLeftView = true;
+
+          leftViewDomElement.addEventListener('mousemove', () => {
+            overLeftView = true;
+          });
+          rightViewDomElement.addEventListener('mousemove', () => {
+            overLeftView = false;
+          });
+          const sync = function () {
+            if (lockedViews) {
+              if (overLeftView) {
+                rightView.camera.setPosition(leftView.camera.position(crs));
+                rightView.camera3D.setRotationFromQuaternion(
+                  leftView.camera3D.quaternion
+                );
+                rightView.notifyChange(rightView.camera3D);
+              } else {
+                leftView.camera.setPosition(rightView.camera.position(crs));
+                leftView.camera3D.setRotationFromQuaternion(
+                  rightView.camera3D.quaternion
+                );
+                leftView.notifyChange(leftView.camera3D);
+              }
+            }
+          };
+          setInterval(sync, 10);
+
+          document
+            .getElementById('left_to_right')
+            .addEventListener('click', () => {
+              rightView.camera.setPosition(leftView.camera.position(crs));
+              rightView.camera3D.setRotationFromQuaternion(
+                leftView.camera3D.quaternion
+              );
+              rightView.notifyChange(rightView.camera3D);
+            });
+
+          document
+            .getElementById('right_to_left')
+            .addEventListener('click', () => {
+              leftView.camera.setPosition(rightView.camera.position(crs));
+              leftView.camera3D.setRotationFromQuaternion(
+                rightView.camera3D.quaternion
+              );
+              leftView.notifyChange(leftView.camera3D);
+            });
+
+          document.getElementById('lock').addEventListener('click', () => {
+            lockedViews = !lockedViews;
+            if (lockedViews) {
+              document.getElementById('unlock_img').style.display = 'none';
+              document.getElementById('lock_img').style.display = 'block';
+            } else {
+              document.getElementById('lock_img').style.display = 'none';
+              document.getElementById('unlock_img').style.display = 'block';
+            }
+          });
+
+          // ADD LAYERS
+          leftView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
+          rightView.addLayer(app.BaseMapLayer(configs['base_maps'], extent));
+
+          const elevationLayer = app.ElevationLayer(
+            configs['elevation'],
+            extent
+          );
+          leftView.addLayer(elevationLayer);
+          rightView.addLayer(elevationLayer);
+
+          const buildingColor = function (feature) {
+            if (
+              ['12', '18', '19', '32', '33'].includes(
+                feature.getInfo().batchTable['USAGE']
+              )
+            )
+              return 'blue';
+            if (
+              ['26', '27', '28', '30', '31'].includes(
+                feature.getInfo().batchTable['USAGE']
+              )
+            )
+              return 'green';
+            if (
+              ['14', '15', '29'].includes(feature.getInfo().batchTable['USAGE'])
+            )
+              return 'yellow';
+            if (
+              ['16', '17', '22'].includes(feature.getInfo().batchTable['USAGE'])
+            )
+              return 'purple';
+            if (
+              [
+                '1',
+                '2',
+                '3',
+                '4',
+                '5',
+                '6',
+                '7',
+                '8',
+                '9',
+                '10',
+                '11',
+                '13',
+                '20',
+                '21',
+                '23',
+                '24',
+                '25',
+              ].includes(feature.getInfo().batchTable['USAGE'])
+            )
+              return 'red';
+            return '#DDDDDD';
+          };
+          const buildingStyle = new app.itowns.Style({
+            fill: {
+              color: buildingColor,
+              opacity: 1,
+            },
+          });
+
+          let years = [];
+          let layersByYearLeft = {};
+          let layersByYearRight = {};
+          configs['bat'].forEach((yearConfig) => {
+            const year = yearConfig.year;
+            years.push(year);
+            layersByYearLeft[year] = [];
+            layersByYearRight[year] = [];
+
+            const leftLayer = app.C3DTilesLayer(yearConfig.data, leftView);
+            leftLayer.style = buildingStyle;
+            leftLayer.visible = false;
+            app.itowns.View.prototype.addLayer.call(leftView, leftLayer);
+            layersByYearLeft[year].push(leftLayer);
+            // leftToolTip.addLayer(leftLayer);
+
+            const rightLayer = app.C3DTilesLayer(yearConfig.data, rightView);
+            rightLayer.style = buildingStyle;
+            rightLayer.visible = false;
+            app.itowns.View.prototype.addLayer.call(rightView, rightLayer);
+            layersByYearRight[year].push(rightLayer);
+            // rightToolTip.addLayer(rightLayer);
+          });
+
+          let currYear = years[0];
+          for (const l of layersByYearLeft[currYear]) l.visible = true;
+          for (const l of layersByYearRight[currYear]) l.visible = true;
+          leftView.notifyChange(leftView.camera3D);
+          rightView.notifyChange(rightView.camera3D);
+
+          // ADD SLIDERS
+          function LoadDataForYear(year, targetDict) {
+            if (year != currYear) {
+              for (const l of targetDict[currYear]) l.visible = false;
+              currYear = year;
+              for (const l of targetDict[currYear]) l.visible = true;
+            }
+          }
+
+          const leftSlider = new rSlider({
+            target: '#left_slider',
+            values: years,
+            labels: false,
+            set: [currYear],
+            onChange: function (val) {
+              LoadDataForYear(val, layersByYearLeft);
+              leftView.notifyChange(leftView.camera3D);
+            },
+          });
+
+          const rightSlider = new rSlider({
+            target: '#right_slider',
+            values: years,
+            labels: false,
+            set: [currYear],
+            onChange: function (val) {
+              LoadDataForYear(val, layersByYearRight);
+              rightView.notifyChange(rightView.camera3D);
+            },
+          });
+        });
+    </script>
+  </body>
+</html>

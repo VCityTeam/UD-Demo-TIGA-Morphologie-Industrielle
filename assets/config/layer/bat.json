@@ -1,0 +1,58 @@
+[
+  {
+    "year": 1954,
+    "data": {
+      "id": "bat_1954",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1954/tileset.json"
+    }
+  },
+  {
+    "year": 1966,
+    "data": {
+      "id": "bat_1966",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1966/tileset.json"
+    }
+  },
+  {
+    "year": 1978,
+    "data": {
+      "id": "bat_1978",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1978/tileset.json"
+    }
+  },
+  {
+    "year": 1986,
+    "data": {
+      "id": "bat_1986",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1986/tileset.json"
+    }
+  },
+  {
+    "year": 1993,
+    "data": {
+      "id": "bat_1993",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1993/tileset.json"
+    }
+  },
+  {
+    "year": 1997,
+    "data": {
+      "id": "bat_1997",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1997/tileset.json"
+    }
+  },
+  {
+    "year": 2007,
+    "data": {
+      "id": "bat_2007",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_2007/tileset.json"
+    }
+  },
+  {
+    "year": 2018,
+    "data": {
+      "id": "bat_2018",
+      "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_2018/tileset.json"
+    }
+  }
+]
