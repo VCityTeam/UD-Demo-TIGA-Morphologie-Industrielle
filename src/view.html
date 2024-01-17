@@ -43,7 +43,6 @@
           '../assets/config/extent.json',
           '../assets/config/crs.json',
           '../assets/config/planar.json',
-          '../assets/config/layer/3DTiles.json',
           '../assets/config/layer/base_maps.json',
           '../assets/config/layer/elevation.json',
           '../assets/config/layer/eff.json',
@@ -164,17 +163,6 @@
           );
           leftView.addLayer(elevationLayer);
           rightView.addLayer(elevationLayer);
-
-          configs['3DTiles'].forEach((config) => {
-            app.itowns.View.prototype.addLayer.call(
-              leftView,
-              app.C3DTilesLayer(config, leftView)
-            );
-            app.itowns.View.prototype.addLayer.call(
-              rightView,
-              app.C3DTilesLayer(config, rightView)
-            );
-          });
 
           const polygonColor = function (feature) {
             if (feature['EFF'] > 100) return 'purple';
