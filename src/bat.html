@@ -75,20 +75,20 @@
           '../assets/config/layer/bat.json',
         ])
         .then((configs) => {
-          const crs = configs['crs'][0].name;
-          app.proj4.default.defs(crs, configs['crs'][0].transform);
+          const crs = configs['crs'][1].name;
+          app.proj4.default.defs(crs, configs['crs'][1].transform);
 
           const extent = new app.itowns.Extent(
-            configs['extent'][0].name,
-            parseInt(configs['extent'][0].west),
-            parseInt(configs['extent'][0].east),
-            parseInt(configs['extent'][0].south),
-            parseInt(configs['extent'][0].north)
+            configs['extent'][1].name,
+            parseInt(configs['extent'][1].west),
+            parseInt(configs['extent'][1].east),
+            parseInt(configs['extent'][1].south),
+            parseInt(configs['extent'][1].north)
           );
 
           // ADD VIEWS
           const placement = {
-            coord: new app.itowns.Coordinates('EPSG:3857', 545650, 5733000),
+            coord: new app.itowns.Coordinates('EPSG:3946', 1847647, 5169288),
             range: 7000,
           };
 
@@ -98,7 +98,7 @@
           const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
             extent,
-            { maxSubdivisionLevel: 17, placement: placement }
+            { maxSubdivisionLevel: 7, placement: placement }
           );
           app.initScene(
             leftView.camera.camera3D,
@@ -116,7 +116,7 @@
           const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
             extent,
-            { maxSubdivisionLevel: 17, placement: placement }
+            { maxSubdivisionLevel: 7, placement: placement }
           );
           app.initScene(
             rightView.camera.camera3D,
