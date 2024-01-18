@@ -226,7 +226,7 @@
           const leftSlider = new rSlider({
             target: '#left_slider',
             values: years,
-            labels: false,
+            labels: true,
             set: [currYear],
             onChange: function (val) {
               leftToolTip.tooltip.innerHTML = '';
@@ -239,7 +239,7 @@
           const rightSlider = new rSlider({
             target: '#right_slider',
             values: years,
-            labels: false,
+            labels: true,
             set: [currYear],
             onChange: function (val) {
               rightToolTip.tooltip.innerHTML = '';
