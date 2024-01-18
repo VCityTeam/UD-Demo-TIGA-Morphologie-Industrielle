@@ -1,7 +1,5 @@
 // FeatureToolTip is a debug module from iTowns
 // https://github.com/iTowns/itowns/blob/master/examples/js/plugins/FeatureToolTip.js
-import * as itowns from 'itowns';
-
 export class FeatureToolTip {
   constructor(viewerDiv, view) {
     this.tooltip = document.createElement('div');
@@ -58,7 +56,7 @@ export class FeatureToolTip {
       }
 
       layer = this.layers[this.layersId.indexOf(layerId)];
-      if (!layer) {
+      if (!layer || !layer.layer.visible) {
         continue;
       }
       if (typeof layer.options.filterGeometries == 'function') {

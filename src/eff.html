@@ -229,6 +229,8 @@
             labels: false,
             set: [currYear],
             onChange: function (val) {
+              leftToolTip.tooltip.innerHTML = '';
+              leftToolTip.tooltip.style.display = 'none';
               LoadDataForYear(val, layersByYearLeft);
               leftView.notifyChange(leftView.camera3D);
             },
@@ -240,6 +242,8 @@
             labels: false,
             set: [currYear],
             onChange: function (val) {
+              rightToolTip.tooltip.innerHTML = '';
+              rightToolTip.tooltip.style.display = 'none';
               LoadDataForYear(val, layersByYearRight);
               rightView.notifyChange(rightView.camera3D);
             },
