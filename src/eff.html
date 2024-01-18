@@ -10,16 +10,43 @@
   <body>
     <div id="main_div">
       <div id="sync_div">
-        <button id="left_to_right">
-          <img src="../assets/img/icons/arrow.png" />
-        </button>
-        <button id="lock">
-          <img id="lock_img" src="../assets/img/icons/lock.png" />
-          <img id="unlock_img" src="../assets/img/icons/unlock.png" />
-        </button>
-        <button id="right_to_left">
-          <img src="../assets/img/icons/arrow.png" />
-        </button>
+        <div id="caption_div">
+          <h1>Effectif par commune</h1>
+          <div class="captions">
+            <div class="caption">
+              <div class="caption_square" style="background: purple"></div>
+              <p class="caption_text">Plus de 100</p>
+            </div>
+            <div class="caption">
+              <div class="caption_square" style="background: red"></div>
+              <p class="caption_text">Entre 50 et 99</p>
+            </div>
+            <div class="caption">
+              <div class="caption_square" style="background: orange"></div>
+              <p class="caption_text">Entre 10 et 49</p>
+            </div>
+            <div class="caption">
+              <div class="caption_square" style="background: yellow"></div>
+              <p class="caption_text">Entre 5 et 9</p>
+            </div>
+            <div class="caption">
+              <div class="caption_square" style="background: green"></div>
+              <p class="caption_text">Entre 1 et 4</p>
+            </div>
+          </div>
+        </div>
+        <div id="sync_buttons_div">
+          <button id="left_to_right">
+            <img src="../assets/img/icons/arrow.png" />
+          </button>
+          <button id="lock">
+            <img id="lock_img" src="../assets/img/icons/lock.png" />
+            <img id="unlock_img" src="../assets/img/icons/unlock.png" />
+          </button>
+          <button id="right_to_left">
+            <img src="../assets/img/icons/arrow.png" />
+          </button>
+        </div>
       </div>
       <div id="left_view">
         <div class="slider_container">
@@ -174,9 +201,9 @@
 
           const polygonColor = function (feature) {
             if (feature['EFF'] > 100) return 'purple';
-            if (feature['EFF'] > 50) return 'red';
-            if (feature['EFF'] > 10) return 'orange';
-            if (feature['EFF'] > 5) return 'yellow';
+            if (feature['EFF'] >= 50) return 'red';
+            if (feature['EFF'] >= 10) return 'orange';
+            if (feature['EFF'] >= 5) return 'yellow';
             if (feature['EFF'] > 0) return 'green';
             return 'black';
           };
