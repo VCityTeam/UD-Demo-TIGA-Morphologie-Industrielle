@@ -250,6 +250,21 @@
             },
           });
 
+          const linesColor = function (feature) {
+            switch (feature['CODE']) {
+              case 'RUES':
+                return 'black';
+              case 'TRAINS':
+                return 'red';
+              case 'METRO D':
+                return 'green';
+              case 'TRAMWAY':
+                return 'purple';
+              default:
+                return 'blue';
+            }
+          };
+
           let years = [];
           let layersByYearLeft = {};
           let layersByYearRight = {};
@@ -258,20 +273,33 @@
             years.push(year);
             layersByYearLeft[year] = [];
             layersByYearRight[year] = [];
+            yearConfig.lines.style.stroke.color = linesColor;
 
             const leftLayer = app.C3DTilesLayer(yearConfig.data, leftView);
             leftLayer.style = buildingStyle;
             leftLayer.visible = false;
             app.itowns.View.prototype.addLayer.call(leftView, leftLayer);
             layersByYearLeft[year].push(leftLayer);
-            // leftToolTip.addLayer(leftLayer);
+            const leftLinesLayer = app.ColorLayerFromFile(yearConfig.lines);
+            leftLinesLayer.visible = false;
+            leftView.addLayer(leftLinesLayer);
+            layersByYearLeft[year].push(leftLinesLayer);
+            leftToolTip.addLayer(leftLinesLayer, {
+              filterProperties: ['CODE'],
+            });
 
             const rightLayer = app.C3DTilesLayer(yearConfig.data, rightView);
             rightLayer.style = buildingStyle;
             rightLayer.visible = false;
             app.itowns.View.prototype.addLayer.call(rightView, rightLayer);
             layersByYearRight[year].push(rightLayer);
-            // rightToolTip.addLayer(rightLayer);
+            const rightLinesLayer = app.ColorLayerFromFile(yearConfig.lines);
+            rightLinesLayer.visible = false;
+            rightView.addLayer(rightLinesLayer);
+            layersByYearRight[year].push(rightLinesLayer);
+            rightToolTip.addLayer(rightLinesLayer, {
+              filterProperties: ['CODE'],
+            });
           });
 
           let currYear = years[0];

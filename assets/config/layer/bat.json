@@ -4,6 +4,18 @@
     "data": {
       "id": "bat_1954",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1954/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_1974_01",
+      "url": "../assets/data/transport_3946/TCL_1974.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -11,6 +23,18 @@
     "data": {
       "id": "bat_1966",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1966/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_1974_02",
+      "url": "../assets/data/transport_3946/TCL_1974.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -18,6 +42,18 @@
     "data": {
       "id": "bat_1978",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1978/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_1979_01",
+      "url": "../assets/data/transport_3946/TCL_1979.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -25,6 +61,18 @@
     "data": {
       "id": "bat_1986",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1986/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_1979_02",
+      "url": "../assets/data/transport_3946/TCL_1979.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -32,6 +80,18 @@
     "data": {
       "id": "bat_1993",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1993/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_1993",
+      "url": "../assets/data/transport_3946/TCL_1993.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -39,6 +99,18 @@
     "data": {
       "id": "bat_1997",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_1997/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_1997",
+      "url": "../assets/data/transport_3946/TCL_1997.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -46,6 +118,18 @@
     "data": {
       "id": "bat_2007",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_2007/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_2009",
+      "url": "../assets/data/transport_3946/TCL_2009.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   },
   {
@@ -53,6 +137,18 @@
     "data": {
       "id": "bat_2018",
       "url": "https://dataset-dl.liris.cnrs.fr/three-d-tiles-lyon-metropolis/Undated/Berliet_2018/tileset.json"
+    },
+    "lines": {
+      "id": "tcl_2015",
+      "url": "../assets/data/transport_3946/TCL_2015.geojson",
+      "crs": "EPSG:3946",
+      "style": {
+        "stroke": {
+          "color": "#DDDDDD",
+          "opacity": 1,
+          "width": 2
+        }
+      }
     }
   }
 ]
