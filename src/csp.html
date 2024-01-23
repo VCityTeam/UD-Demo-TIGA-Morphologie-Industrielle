@@ -74,20 +74,20 @@
           '../assets/config/layer/eff.json',
         ])
         .then((configs) => {
-          const crs = configs['crs'][0].name;
-          app.proj4.default.defs(crs, configs['crs'][0].transform);
+          const crs = configs['crs'][2].name;
+          app.proj4.default.defs(crs, configs['crs'][2].transform);
 
           const extent = new app.itowns.Extent(
-            configs['extent'][0].name,
-            parseInt(configs['extent'][0].west),
-            parseInt(configs['extent'][0].east),
-            parseInt(configs['extent'][0].south),
-            parseInt(configs['extent'][0].north)
+            configs['extent'][2].name,
+            parseInt(configs['extent'][2].west),
+            parseInt(configs['extent'][2].east),
+            parseInt(configs['extent'][2].south),
+            parseInt(configs['extent'][2].north)
           );
 
           // ADD VIEWS
           const placement = {
-            coord: new app.itowns.Coordinates('EPSG:3857', 554000, 5730000),
+            coord: new app.itowns.Coordinates('EPSG:2154', 847531, 6513801),
             range: 300000,
           };
 

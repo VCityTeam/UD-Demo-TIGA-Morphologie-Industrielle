@@ -3,8 +3,8 @@
         "year": 1990,
         "data": {
             "id": "eff_1990",
-            "url": "../assets/data/eff_3857/EFF_1990_1995.geojson",
-            "crs": "EPSG:3857",
+            "url": "../assets/data/eff_2154/EFF_1990_1995.geojson",
+            "crs": "EPSG:2154",
             "style": {
                 "fill": {
                     "color": "#DDDDDD",
@@ -21,8 +21,8 @@
         "year": 1995,
         "data": {
             "id": "eff_1995",
-            "url": "../assets/data/eff_3857/EFF_1995_2000.geojson",
-            "crs": "EPSG:3857",
+            "url": "../assets/data/eff_2154/EFF_1995_2000.geojson",
+            "crs": "EPSG:2154",
             "style": {
                 "fill": {
                     "color": "#DDDDDD",
@@ -39,8 +39,8 @@
         "year": 2000,
         "data": {
             "id": "eff_2000",
-            "url": "../assets/data/eff_3857/EFF_2000_2005.geojson",
-            "crs": "EPSG:3857",
+            "url": "../assets/data/eff_2154/EFF_2000_2005.geojson",
+            "crs": "EPSG:2154",
             "style": {
                 "fill": {
                     "color": "#DDDDDD",
@@ -57,8 +57,8 @@
         "year": 2005,
         "data": {
             "id": "eff_2005",
-            "url": "../assets/data/eff_3857/EFF_2005_2010.geojson",
-            "crs": "EPSG:3857",
+            "url": "../assets/data/eff_2154/EFF_2005_2010.geojson",
+            "crs": "EPSG:2154",
             "style": {
                 "fill": {
                     "color": "#DDDDDD",
@@ -75,8 +75,8 @@
         "year": 2010,
         "data": {
             "id": "eff_2010",
-            "url": "../assets/data/eff_3857/EFF_2010_2015.geojson",
-            "crs": "EPSG:3857",
+            "url": "../assets/data/eff_2154/EFF_2010_2015.geojson",
+            "crs": "EPSG:2154",
             "style": {
                 "fill": {
                     "color": "#DDDDDD",
@@ -93,8 +93,8 @@
         "year": 2015,
         "data": {
             "id": "eff_2015",
-            "url": "../assets/data/eff_3857/EFF_2015_2020.geojson",
-            "crs": "EPSG:3857",
+            "url": "../assets/data/eff_2154/EFF_2015_2020.geojson",
+            "crs": "EPSG:2154",
             "style": {
                 "fill": {
                     "color": "#DDDDDD",
