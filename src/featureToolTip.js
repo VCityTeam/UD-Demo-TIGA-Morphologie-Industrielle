@@ -44,10 +44,7 @@ export class FeatureToolTip {
     this.tooltip.innerHTML = '';
     this.tooltip.style.display = 'none';
 
-    const features = this.view.pickFeaturesAt.apply(
-      this.view,
-      [event, 3].concat(this.layersId)
-    );
+    const features = this.view.pickFeaturesAt(event, 3, ...this.layersId);
 
     let layer;
     for (const layerId in features) {

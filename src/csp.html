@@ -94,7 +94,7 @@
           const leftViewDomElement = document.getElementById(
             'left_view_container'
           );
-          const leftView = new app.itowns.GlobeView(
+          const leftView = new app.itowns.PlanarView(
             leftViewDomElement,
             extent,
             { maxSubdivisionLevel: 12, placement: placement }
@@ -112,7 +112,7 @@
           const rightViewDomElement = document.getElementById(
             'right_view_container'
           );
-          const rightView = new app.itowns.GlobeView(
+          const rightView = new app.itowns.PlanarView(
             rightViewDomElement,
             extent,
             { maxSubdivisionLevel: 12, placement: placement }
