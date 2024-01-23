@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>View</title>
+    <title>Répartition des CSP</title>
     <link rel="stylesheet" href="../css/view.css" />
     <link rel="stylesheet" href="../css/rSlider.css" />
     <meta charset="UTF-8" />
@@ -11,27 +11,23 @@
     <div id="main_div">
       <div id="sync_div">
         <div id="caption_div">
-          <h1>Effectif par commune</h1>
+          <h1>Répartition des CSP</h1>
           <div class="captions">
             <div class="caption">
-              <div class="caption_square" style="background: purple"></div>
-              <p class="caption_text">Plus de 100</p>
-            </div>
-            <div class="caption">
-              <div class="caption_square" style="background: red"></div>
-              <p class="caption_text">Entre 50 et 99</p>
-            </div>
-            <div class="caption">
-              <div class="caption_square" style="background: orange"></div>
-              <p class="caption_text">Entre 10 et 49</p>
-            </div>
-            <div class="caption">
-              <div class="caption_square" style="background: yellow"></div>
-              <p class="caption_text">Entre 5 et 9</p>
+              <div class="caption_square" style="background: blue"></div>
+              <p class="caption_text">Majorité de cadres</p>
             </div>
             <div class="caption">
               <div class="caption_square" style="background: green"></div>
-              <p class="caption_text">Entre 1 et 4</p>
+              <p class="caption_text">Majorité de professions intermédiaires</p>
+            </div>
+            <div class="caption">
+              <div class="caption_square" style="background: yellow"></div>
+              <p class="caption_text">Majorité d'employés</p>
+            </div>
+            <div class="caption">
+              <div class="caption_square" style="background: red"></div>
+              <p class="caption_text">Majorité d'ouvriers</p>
             </div>
           </div>
         </div>
@@ -199,12 +195,15 @@
           rightView.addLayer(elevationLayer);
 
           const polygonColor = function (feature) {
-            if (feature['EFF'] > 100) return 'purple';
-            if (feature['EFF'] >= 50) return 'red';
-            if (feature['EFF'] >= 10) return 'orange';
-            if (feature['EFF'] >= 5) return 'yellow';
-            if (feature['EFF'] > 0) return 'green';
-            return 'black';
+            const parts = [
+              feature['PART_3'],
+              feature['PART_4'],
+              feature['PART_5'],
+              feature['PART_6'],
+            ];
+            const colors = ['red', 'yellow', 'green', 'blue'];
+            const maxIndex = parts.indexOf(Math.max(...parts));
+            return colors[maxIndex];
           };
 
           let years = [];
@@ -222,7 +221,14 @@
             leftView.addLayer(leftLayer);
             layersByYearLeft[year].push(leftLayer);
             leftToolTip.addLayer(leftLayer, {
-              filterProperties: ['nom_comm', 'EFF', 'PART_3', 'PART_4', 'PART_5', 'PART_6'],
+              filterProperties: [
+                'nom_comm',
+                'EFF',
+                'PART_3',
+                'PART_4',
+                'PART_5',
+                'PART_6',
+              ],
             });
 
             const rightLayer = app.ColorLayerFromFile(yearConfig.data);
@@ -230,7 +236,14 @@
             rightView.addLayer(rightLayer);
             layersByYearRight[year].push(rightLayer);
             rightToolTip.addLayer(rightLayer, {
-              filterProperties: ['nom_comm', 'EFF', 'PART_3', 'PART_4', 'PART_5', 'PART_6'],
+              filterProperties: [
+                'nom_comm',
+                'EFF',
+                'PART_3',
+                'PART_4',
+                'PART_5',
+                'PART_6',
+              ],
             });
           });
 
