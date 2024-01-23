@@ -41,6 +41,12 @@ body {
   filter: brightness(0.7);
 }
 
+.content_button:disabled {
+  cursor: auto;
+  -webkit-filter: brightness(0.1);
+  filter: brightness(0.1);
+}
+
 .content_button img {
   width: 100%;
   border-radius: 25px;
