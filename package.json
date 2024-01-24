@@ -6,7 +6,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "debug": "cross-env NODE_ENV=development webpack && python3 -m http.server"
+    "debug": "cross-env NODE_ENV=development webpack",
+    "debug-run": "cross-env NODE_ENV=development webpack && python3 -m http.server"
   },
   "repository": {
     "type": "git",
