@@ -164,22 +164,31 @@
           rightViewDomElement.addEventListener('mousemove', () => {
             overLeftView = false;
           });
+
+          const syncLeft = function () {
+            leftView.camera.setPosition(rightView.camera.position(crs));
+            leftView.camera3D.setRotationFromQuaternion(
+              rightView.camera3D.quaternion
+            );
+            leftScale.update();
+            leftView.notifyChange(leftView.camera3D);
+          };
+
+          const syncRight = function () {
+            rightView.camera.setPosition(leftView.camera.position(crs));
+            rightView.camera3D.setRotationFromQuaternion(
+              leftView.camera3D.quaternion
+            );
+            rightScale.update();
+            rightView.notifyChange(rightView.camera3D);
+          };
+
           const sync = function () {
             if (lockedViews) {
               if (overLeftView) {
-                rightView.camera.setPosition(leftView.camera.position(crs));
-                rightView.camera3D.setRotationFromQuaternion(
-                  leftView.camera3D.quaternion
-                );
-                rightScale.update();
-                rightView.notifyChange(rightView.camera3D);
+                syncRight();
               } else {
-                leftView.camera.setPosition(rightView.camera.position(crs));
-                leftView.camera3D.setRotationFromQuaternion(
-                  rightView.camera3D.quaternion
-                );
-                leftScale.update();
-                leftView.notifyChange(leftView.camera3D);
+                syncLeft();
               }
             }
           };
@@ -188,21 +197,13 @@
           document
             .getElementById('left_to_right')
             .addEventListener('click', () => {
-              rightView.camera.setPosition(leftView.camera.position(crs));
-              rightView.camera3D.setRotationFromQuaternion(
-                leftView.camera3D.quaternion
-              );
-              rightView.notifyChange(rightView.camera3D);
+              syncRight();
             });
 
           document
             .getElementById('right_to_left')
             .addEventListener('click', () => {
-              leftView.camera.setPosition(rightView.camera.position(crs));
-              leftView.camera3D.setRotationFromQuaternion(
-                rightView.camera3D.quaternion
-              );
-              leftView.notifyChange(leftView.camera3D);
+              syncLeft();
             });
 
           document.getElementById('lock').addEventListener('click', () => {
