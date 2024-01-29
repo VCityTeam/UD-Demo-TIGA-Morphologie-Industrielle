@@ -1,6 +1,11 @@
 export * as itowns from 'itowns';
-export { Scale } from 'itowns/widgets'
-export { initScene, loadMultipleJSON } from '@ud-viz/utils_browser';
+export { Scale } from 'itowns/widgets';
+export {
+  initScene,
+  loadMultipleJSON,
+  RequestService,
+} from '@ud-viz/utils_browser';
+export { GeocodingView, GeocodingService } from '@ud-viz/widget_geocoding';
 export * as proj4 from 'proj4';
 export {
   BaseMapLayer,

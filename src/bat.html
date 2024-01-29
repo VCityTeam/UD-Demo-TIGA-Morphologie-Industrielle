@@ -91,6 +91,7 @@
           '../assets/config/layer/base_maps.json',
           '../assets/config/layer/elevation.json',
           '../assets/config/layer/bat.json',
+          '../assets/config/geocoding.json',
         ])
         .then((configs) => {
           const crs = configs['crs'][1].name;
@@ -368,6 +369,33 @@
               rightView.notifyChange(rightView.camera3D);
             },
           });
+
+          // ADD GEOCODING WIDGET
+          const requestService = new app.RequestService();
+          const leftGeocodingView = new app.GeocodingView(
+            new app.GeocodingService(
+              requestService,
+              extent,
+              configs['geocoding']
+            ),
+            leftView
+          );
+          leftGeocodingView.domElement.classList.add('geocoding_div');
+          document
+            .getElementById('left_view')
+            .appendChild(leftGeocodingView.domElement);
+          const rightGeocodingView = new app.GeocodingView(
+            new app.GeocodingService(
+              requestService,
+              extent,
+              configs['geocoding']
+            ),
+            rightView
+          );
+          rightGeocodingView.domElement.classList.add('geocoding_div');
+          document
+            .getElementById('right_view')
+            .appendChild(rightGeocodingView.domElement);
         });
     </script>
   </body>
