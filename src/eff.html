@@ -9,13 +9,17 @@
   </head>
   <body>
     <div id="nav_div">
-      <button class="nav_button with_right_border" onclick="location.href = '../index.html';">
+      <button
+        class="nav_button with_right_border"
+        onclick="location.href = '../index.html';"
+      >
         Accueil
       </button>
-      <button class="nav_button with_right_border" disabled>
-        Story map
-      </button>
-      <button class="nav_button with_right_border" onclick="location.href = './bat.html';">
+      <button class="nav_button with_right_border" disabled>Story map</button>
+      <button
+        class="nav_button with_right_border"
+        onclick="location.href = './bat.html';"
+      >
         Évolution du bâtiment
       </button>
       <button class="nav_button" onclick="location.href = './csp.html';">
@@ -122,6 +126,10 @@
             leftViewDomElement,
             leftView
           );
+          const leftScale = new app.Scale(leftView, {
+            position: 'bottom-right',
+            translate: { x: 10, y: -40 },
+          });
 
           const rightViewDomElement = document.getElementById(
             'right_view_container'
@@ -140,6 +148,10 @@
             rightViewDomElement,
             rightView
           );
+          const rightScale = new app.Scale(rightView, {
+            position: 'bottom-right',
+            translate: { x: 10, y: -40 },
+          });
 
           // ADD EVENTS
           let lockedViews = true;
@@ -158,12 +170,14 @@
                 rightView.camera3D.setRotationFromQuaternion(
                   leftView.camera3D.quaternion
                 );
+                rightScale.update();
                 rightView.notifyChange(rightView.camera3D);
               } else {
                 leftView.camera.setPosition(rightView.camera.position(crs));
                 leftView.camera3D.setRotationFromQuaternion(
                   rightView.camera3D.quaternion
                 );
+                leftScale.update();
                 leftView.notifyChange(leftView.camera3D);
               }
             }
