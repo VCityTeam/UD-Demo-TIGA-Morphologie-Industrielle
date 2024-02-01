@@ -3,7 +3,7 @@
         "name": "Tour example",
         "description": "This is an example of guided tour",
         "startIndex": 0,
-        "endIndex": 3,
+        "endIndex": 2,
         "steps": [
             {
                 "previous": 0,
@@ -11,14 +11,16 @@
                 "layers": [
                     "planar",
                     "wms_elevation_test",
-                    "ign"
+                    "ign",
+                    "bat_1954",
+                    "tcl_1974_01"
                 ],
                 "media": [
-                    "TEXT_00", "IMG_00"
+                    "TEXT_00"
                 ],
                 "position": {
-                    "x": 1844817,
-                    "y": 5175845,
+                    "x": 1847647,
+                    "y": 5169288,
                     "z": 13958
                 },
                 "rotation": {
@@ -34,15 +36,17 @@
                 "layers": [
                     "planar",
                     "wms_elevation_test",
-                    "ign"
+                    "ign",
+                    "bat_1966",
+                    "tcl_1974_02"
                 ],
                 "media": [
-                    "VID_00", "TEXT_00"
+                    "TEXT_01"
                 ],
                 "position": {
-                    "x": 1841860,
-                    "y": 5172347,
-                    "z": 1800
+                    "x": 1847660,
+                    "y": 5168047,
+                    "z": 800
                 },
                 "rotation": {
                     "x": 0.4372485384286126,
@@ -53,48 +57,27 @@
             },
             {
                 "previous": 1,
-                "next": 3,
+                "next": 2,
                 "layers": [
                     "planar",
                     "wms_elevation_test",
-                    "ign"
+                    "ign",
+                    "bat_1978",
+                    "tcl_1979_01"
                 ],
                 "media": [
-                    "AUD_00", "IMG_00"
+                    "TEXT_02"
                 ],
                 "position": {
-                    "x": 1842432,
-                    "y": 5175753,
-                    "z": 400
+                    "x": 1847760,
+                    "y": 5168747,
+                    "z": 4300
                 },
                 "rotation": {
-                    "x": 0.35922373109642836,
-                    "y": -0.28960235472088647,
-                    "z": -0.5568198186433112,
-                    "w": 0.6906811686467995
-                }
-            },
-            {
-                "previous": 2,
-                "next": 3,
-                "layers": [
-                    "planar",
-                    "wms_elevation_test",
-                    "ign"
-                ],
-                "media": [
-                    "VID_00", "AUD_00"
-                ],
-                "position": {
-                    "x": 1844393,
-                    "y": 5174236,
-                    "z": 700
-                },
-                "rotation": {
-                    "x": 0.43419437332154354,
-                    "y": 0.08434226729415112,
-                    "z": 0.1710188272096401,
-                    "w": 0.8804056956105141
+                    "x": 0,
+                    "y": 0,
+                    "z": 0.5,
+                    "w": 1
                 }
             }
         ]
@@ -103,22 +86,17 @@
         {
             "id": "TEXT_00",
             "type": "text",
-            "value": "This is an example"
+            "value": "Au milieu du XIXe siècle, une importante épidémie de choléra touche les habitations ouvrières surpeuplées des villes et relance les débats sur l'hygiénisme. Le médecin Louis René Villermé, s'intéresse alors aux cités ouvrières comme moyen « d'inscrire dans l'habitat les normes de l'ordre sexuel, social et politique et d'en assurer l'espace intime de l'hygiène privée [à travers] une architecture adéquate » (Noisette, Butler, 1983, p. 48-49). \nEn France, les premières cités ouvrières voient le jour dans le nord, à Guise dans l'Aisne où l'industriel Jean-Baptiste André Godin fait construire à côté de son usine des bâtiments d'habitation pour ses ouvriers et leur famille à partir de 1858.\nDans la ville du Creusot, en Saône-et-Loire - spécialisée dans les activités minières et sidérurgiques - s'érigent au début du XVIIIe siècle des casernes pour loger les ouvriers. \nÀ Mulhouse, la Société mulhousienne des cités ouvrières fondée en 1853 par plusieurs industriels de la ville, bâtit jusqu'en 1897 plus de 1 000 habitations pour loger une partie de la main-d'œuvre mulhousienne. \n\nS'inspirant de ces premières cités ouvrières du XIXe siècle, Marius Berliet entreprend la construction de sa propre Cité en 1917. Séparée de l'usine par l'avenue Pierre Cot, la Cité est construite à Saint-Priest sur des terrains appartenant au constructeur. \nIl s'agit donc de loger des salariés dont les fonctions assurent la continuité des activités de production. \nLe projet de la Cité Berliet s'inscrit dans une vision paternaliste du logement ouvrier. En leur donnant accès à un logement avec un jardin à entretenir, Marius Berliet souhaite ne pas « livre[r] l'ouvrier sans défense aux bistros et au cinéma coûteux, et à l'agitation politique »."
         },
         {
-            "id": "IMG_00",
-            "type": "image",
-            "value": "https://projet.liris.cnrs.fr/vcity/UD-Viz.png"
+            "id": "TEXT_01",
+            "type": "text",
+            "value": "La construction des logements de la Cité Berliet a lieu en plusieurs étapes entre 1917 et 1961.\nDes pavillons divisés en plusieurs logements accueillent des familles et les bâtiments collectifs hébergent des célibataires et des jeunes ménages.\n1 250 personnes vivent dans le Cité en 1960.\n\nLa Cité Berliet héberge aussi des activités participant à la vie locale. Elle dispose d'une ferme, d'une école, d'un marché et de commerces. Au nord de la Cité, se trouve un stade pour accueillir les compétitions sportives des clubs de l'entreprise.\nLes voies de circulation proposent un quadrillage géométrique s'inspirant, tout comme l'organisation de l'usine de Vénissieux, du modèle industriel américain.\n\nLes critères d'attribution des logements dépendent du poste occupé par le salarié, de son ancienneté dans l'usine, de son nombre d'enfants ou encore ses conditions de logement au moment de la demande mais aussi de « la tenue et de la moralité de la maison »."
         },
         {
-            "id": "VID_00",
-            "type": "video",
-            "value": "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
-        },
-        {
-            "id": "AUD_00",
-            "type": "audio",
-            "value": "https://www.learningcontainer.com/wp-content/uploads/2020/02/Kalimba.mp3"
+            "id": "TEXT_02",
+            "type": "text",
+            "value": "À la suite du rapprochement entre Berliet et la SAVIEM en 1978, la Cité Berliet devient la propriété de Renault Véhicules Industriels (RVI).\nElle est alors exposée à d'importantes dégradations : trottoirs détériorés par les racines des arbres, rues non nettoyées, façades décrépies, éclairage extérieur dysfonctionnant.\nLes commerces ferment progressivement tout comme la crèche et le marché.\n\nEn 2002, la Cité est vendue à un promoteur pour près de 6 millions d'euros.\nLe parc est cédé à la ville de Saint-Priest pour un euro symbolique. Les allées sont rénovées, une aire de jeux pour enfants et un terrain multisports sont aménagés.\nDeux nouvelles résidences sont construites sur des terrains non bâtis.\n\nLa vente de la Cité Berliet préfigure son extension à l'est et au nord sur d'anciens terrains Berliet.\nDes logements sociaux et privés y sont alors construits.\n\nLa ferme est vendue à la ville de Saint-Priest et accueille des activités sportives et culturelles.\nAu nord de la route de Lyon un parc d'activité - le Multiparc Parilly - est créé.\n\nL'extension de la Cité Berliet et le développement économique d'activités sur des parcelles vendues par Renault Trucks s'inscrivent dans un projet beaucoup plus vaste, celui d'une Zone d'Aménagement Concerté (ZAC)."
         }
     ]
 }
