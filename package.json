@@ -26,6 +26,7 @@
   "dependencies": {
     "@ud-viz/utils_browser": "4.0.3",
     "@ud-viz/widget_geocoding": "4.0.3",
+    "@ud-viz/widget_guided_tour": "4.0.3",
     "buffer": "^6.0.3",
     "cross-env": "7.0.3"
   },
