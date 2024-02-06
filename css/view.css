@@ -119,7 +119,7 @@ body {
   cursor: pointer;
 }
 
-img {
+#sync_buttons_div img {
   width: 100%;
   height: 100%;
 }
@@ -162,7 +162,7 @@ img {
 
 .slider_container {
   position: absolute;
-  bottom: 50px;
+  bottom: 120px;
   left: 50%;
   width: 75%;
   transform: translateX(-50%);
@@ -206,6 +206,31 @@ img {
   margin-left: 0px;
   font-size: 14px;
   color: #ffffff;
+}
+
+#logo_div {
+  position: absolute;
+  right: 0px;
+  bottom: 0px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  width: 25%;
+  background-color: rgba(202, 202, 202, 0.6);
+  padding: 10px 10px;
+  border-radius: 5px;
+}
+
+.logo {
+  max-height: 80px;
+}
+
+.logo_img {
+  position: relative;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-height: 100%;
 }
 
 /* SCALE WIDGET */
@@ -268,7 +293,7 @@ img {
 }
 
 .widget_guided_tour {
-  background-color: rgba(202, 202, 202, 0.95);;
+  background-color: rgba(202, 202, 202, 0.95);
   display: flex;
   flex-direction: column;
   width: fit-content;

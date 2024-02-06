@@ -94,3 +94,26 @@ body {
   font-style: normal;
   font-size: 0.9vw;
 }
+
+#logo_section {
+  margin: 0px 20px 30px 20px;
+}
+
+#logo_div {
+  display: flex;
+  flex-flow: wrap;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.logo {
+  width: 200px;
+  height: 200px;
+}
+
+.logo_img {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 100%;
+}
