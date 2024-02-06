@@ -10,6 +10,8 @@
 
 Ce projet fait partie de l'[action 14 de TIGA](https://imu.universite-lyon.fr/tiga/)
 
+[__Online demo__](http://demo.liris.cnrs.fr/vcity/mi/)
+
 ## Installing and running the demo
 
 Clone the repo:
