@@ -63,10 +63,10 @@ body {
 #caption_div h1 {
   position: relative;
   width: 100%;
-  padding: 10px;
+  padding: 10px 0px;
   margin: 0px;
   text-align: center;
-  font-size: 24px;
+  font-size: 1.3vw;
 }
 
 .captions {
