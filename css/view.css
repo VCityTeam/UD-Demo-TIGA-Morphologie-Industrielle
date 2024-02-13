@@ -180,32 +180,20 @@ body {
 
 .tooltip {
   display: none;
-  background-image: linear-gradient(
-    rgba(167, 164, 164, 0.95),
-    rgba(60, 60, 60, 0.95)
-  );
+  background-color: rgba(202, 202, 202, 0.95);
   box-shadow: -1px 2px 5px 1px rgba(0, 0, 0, 0.5);
   margin-top: 20px;
   margin-left: 20px;
-  padding-right: 10px;
   position: absolute;
   z-index: 1000;
-  color: #cecece;
-  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
-  line-height: 18px;
-  text-align: left;
+  text-align: center;
+  border-radius: 5px;
 }
 
 .tooltip ul {
-  padding-left: 20px;
-}
-
-.tooltip li {
-  padding-left: 0px;
-  margin-left: 0px;
-  font-size: 14px;
-  color: #ffffff;
+  padding: 3px 10px;
+  margin: 0px;
 }
 
 #logo_div {

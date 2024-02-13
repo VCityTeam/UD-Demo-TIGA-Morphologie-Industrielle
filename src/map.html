@@ -182,7 +182,7 @@
             linesLayer.visible = false;
             view.addLayer(linesLayer);
             toolTip.addLayer(linesLayer, {
-              filterProperties: ['CODE'],
+              filterProperties: [{ name: 'CODE', target: 'Code' }],
             });
           });
 

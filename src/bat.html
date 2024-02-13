@@ -321,6 +321,9 @@
             layersByYearLeft[year] = [];
             layersByYearRight[year] = [];
             yearConfig.lines.style.stroke.color = linesColor;
+            const options = {
+              filterProperties: [{ name: 'CODE', target: 'Code' }],
+            };
 
             const leftLayer = app.C3DTilesLayer(yearConfig.data, leftView);
             leftLayer.style = buildingStyle;
@@ -331,9 +334,7 @@
             leftLinesLayer.visible = false;
             leftView.addLayer(leftLinesLayer);
             layersByYearLeft[year].push(leftLinesLayer);
-            leftToolTip.addLayer(leftLinesLayer, {
-              filterProperties: ['CODE'],
-            });
+            leftToolTip.addLayer(leftLinesLayer, options);
 
             const rightLayer = app.C3DTilesLayer(yearConfig.data, rightView);
             rightLayer.style = buildingStyle;
@@ -344,9 +345,7 @@
             rightLinesLayer.visible = false;
             rightView.addLayer(rightLinesLayer);
             layersByYearRight[year].push(rightLinesLayer);
-            rightToolTip.addLayer(rightLinesLayer, {
-              filterProperties: ['CODE'],
-            });
+            rightToolTip.addLayer(rightLinesLayer, options);
           });
 
           let currYear = years[0];

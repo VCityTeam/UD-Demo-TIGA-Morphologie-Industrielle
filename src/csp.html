@@ -261,36 +261,28 @@
             layersByYearLeft[year] = [];
             layersByYearRight[year] = [];
             yearConfig.data.style.fill.color = polygonColor;
+            const options = {
+              filterProperties: [
+                { name: 'nom_comm', target: 'Commune' },
+                { name: 'EFF', target: 'Effectif total' },
+                { name: 'PART_3', target: 'Part cadres (%)' },
+                { name: 'PART_4', target: 'Part intermédiaires (%)' },
+                { name: 'PART_5', target: 'Part employés (%)' },
+                { name: 'PART_6', target: 'Part ouvriers (%)' },
+              ],
+            };
 
             const leftLayer = app.ColorLayerFromFile(yearConfig.data);
             leftLayer.visible = false;
             leftView.addLayer(leftLayer);
             layersByYearLeft[year].push(leftLayer);
-            leftToolTip.addLayer(leftLayer, {
-              filterProperties: [
-                'nom_comm',
-                'EFF',
-                'PART_3',
-                'PART_4',
-                'PART_5',
-                'PART_6',
-              ],
-            });
+            leftToolTip.addLayer(leftLayer, options);
 
             const rightLayer = app.ColorLayerFromFile(yearConfig.data);
             rightLayer.visible = false;
             rightView.addLayer(rightLayer);
             layersByYearRight[year].push(rightLayer);
-            rightToolTip.addLayer(rightLayer, {
-              filterProperties: [
-                'nom_comm',
-                'EFF',
-                'PART_3',
-                'PART_4',
-                'PART_5',
-                'PART_6',
-              ],
-            });
+            rightToolTip.addLayer(rightLayer, options);
           });
 
           let currYear = years[0];

@@ -41,12 +41,10 @@ export class FeatureToolTip {
   }
 
   moveToolTip(event) {
-    this.tooltip.innerHTML = '';
-    this.tooltip.style.display = 'none';
-
     const features = this.view.pickFeaturesAt(event, 3, ...this.layersId);
 
     let layer;
+    let content = '';
     for (const layerId in features) {
       if (features[layerId].length == 0) {
         continue;
@@ -60,16 +58,17 @@ export class FeatureToolTip {
         features[layerId] =
           layer.options.filterGeometries(features[layerId], layer.layer) || [];
       }
-      this.tooltip.innerHTML += this.fillToolTip(
-        [features[layerId][0]],
-        layer.options
-      );
+      content += this.fillToolTip([features[layerId][0]], layer.options);
     }
 
-    if (this.tooltip.innerHTML != '') {
+    if (content != '') {
+      this.tooltip.innerHTML = content;
       this.tooltip.style.display = 'block';
       this.tooltip.style.left = this.view.eventToViewCoords(event).x + 'px';
       this.tooltip.style.top = this.view.eventToViewCoords(event).y + 'px';
+    } else {
+      this.tooltip.style.display = 'none';
+      this.tooltip.innerHTML = '';
     }
   }
 
@@ -84,26 +83,15 @@ export class FeatureToolTip {
       geometry = feature.geometry;
       content += '<div>';
 
-      if (geometry.properties && !options.filterAllProperties) {
-        if (options.format) {
-          for (prop in geometry.properties) {
-            if (options.filterProperties.includes(prop)) {
-              content += options.format(prop, geometry.properties[prop]) || '';
-            }
-          }
-        } else {
-          content += '<ul>';
-          for (prop in geometry.properties) {
-            if (options.filterProperties.includes(prop)) {
-              content +=
-                '<li>' + prop + ': ' + geometry.properties[prop] + '</li>';
-            }
-          }
-
-          if (content.endsWith('<ul>')) {
-            content = content.replace('<ul>', '');
-          } else {
-            content += '</ul>';
+      if (geometry.properties) {
+        for (prop in geometry.properties) {
+          let filter = options.filterProperties.find((f) => {
+            return f.name == prop;
+          });
+          if (filter) {
+            let value =
+              geometry.properties[prop] == null ? 0 : geometry.properties[prop];
+            content += '<ul>' + filter.target + ': ' + value + '</ul>';
           }
         }
       }
@@ -119,11 +107,7 @@ export class FeatureToolTip {
       return layer;
     }
 
-    const opts = options || { filterAllProperties: true };
-    opts.filterProperties =
-      opts.filterProperties === undefined ? [] : opts.filterProperties;
-
-    this.layers.push({ layer: layer, options: opts });
+    this.layers.push({ layer: layer, options: options });
     this.layersId.push(layer.id);
 
     return layer;
