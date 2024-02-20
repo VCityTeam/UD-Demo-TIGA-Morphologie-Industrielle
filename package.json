@@ -24,9 +24,9 @@
   },
   "homepage": "https://github.com/VCityTeam/UD-Demo-TIGA-Morphologie-Urbaine#readme",
   "dependencies": {
-    "@ud-viz/utils_browser": "4.0.3",
-    "@ud-viz/widget_geocoding": "4.0.3",
-    "@ud-viz/widget_guided_tour": "4.0.3",
+    "@ud-viz/utils_browser": "4.1.0",
+    "@ud-viz/widget_geocoding": "4.1.0",
+    "@ud-viz/widget_guided_tour": "4.1.0",
     "buffer": "^6.0.3",
     "chart.js": "^4.4.1",
     "cross-env": "7.0.3"
