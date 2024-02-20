@@ -15,3 +15,4 @@ export {
   ElevationLayer,
 } from './layerUtils';
 export { FeatureToolTip } from './featureToolTip';
+export { Chart } from 'chart.js/auto';
