@@ -334,7 +334,8 @@
               extent,
               configs['geocoding']
             ),
-            leftView
+            leftView,
+            crs
           );
           leftGeocodingView.domElement.classList.add('geocoding_div');
           document
@@ -346,7 +347,8 @@
               extent,
               configs['geocoding']
             ),
-            rightView
+            rightView,
+            crs
           );
           rightGeocodingView.domElement.classList.add('geocoding_div');
           document
