@@ -10,7 +10,7 @@
 
 Ce projet fait partie de l'[action 14 de TIGA](https://imu.universite-lyon.fr/tiga/)
 
-[__Online demo__](http://demo.liris.cnrs.fr/vcity/mi/)
+[__Online demo__](https://projet.liris.cnrs.fr/vcity/permalink/demo-udviz-morphologie-industrielle)
 
 ## Installing and running the demo
 
